@@ -1,0 +1,1184 @@
+<!DOCTYPE html>
+<html class="loading" lang="en" data-textdirection="ltr">
+<!-- BEGIN: Head-->
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0">
+    <meta name="description" content="Newly Funded Traders Dashboard">
+    <meta name="keywords" content="Newly Funded Traders">
+    <meta name="Newly Funded Traders" content="Newly Funded Traders">
+    <title>Newly Funded Traders Dashboard</title>
+    <link rel="apple-touch-icon" href="asset/images/ico/apple-icon-120.png">
+    <link rel="shortcut icon" type="image/x-icon" href="asset/images/ico/favicon.ico">
+    <link href="https://fonts.googleapis.com/css?family=Rubik:300,400,500,600%7CIBM+Plex+Sans:300,400,500,600,700" rel="stylesheet">
+
+    <!-- BEGIN: Vendor CSS-->
+    <link rel="stylesheet" type="text/css" href="asset/css/LivIconsEvo.css">
+
+
+    <!-- BEGIN: Vendor CSS-->
+    <link rel="stylesheet" type="text/css" href="asset/css/vendors.min.css">
+    <link rel="stylesheet" type="text/css" href="asset/css/apexcharts.css">
+    <link rel="stylesheet" type="text/css" href="asset/css/extensions/dragula.min.css">
+    <!-- END: Vendor CSS-->
+    <!-- BEGIN: Theme CSS-->
+    <link rel="stylesheet" type="text/css" href="asset/css/bootstrap.css">
+    <link rel="stylesheet" type="text/css" href="asset/css/bootstrap-extended.css">
+    <link rel="stylesheet" type="text/css" href="asset/css/colors.css">
+    <link rel="stylesheet" type="text/css" href="asset/css/components.css">
+    <link rel="stylesheet" type="text/css" href="asset/css/dark-layout.css">
+    <link rel="stylesheet" type="text/css" href="asset/css/semi-dark-layout.css">
+    <!-- END: Theme CSS-->
+    <!-- BEGIN: Page CSS-->
+    <link rel="stylesheet" type="text/css" href="asset/css/vertical-menu.css">
+    <link rel="stylesheet" type="text/css" href="asset/css/widgets.css">
+    <link rel="stylesheet" type="text/css" href="asset/css/dashboard-analytics.css">
+    <!-- END: Page CSS-->
+    <!-- BEGIN: Custom CSS-->
+    <link rel="stylesheet" type="text/css" href="asset/css/style.css">
+    <!-- END: Custom CSS-->
+
+    <style>
+        body.dark-layout ul li {
+            color: #fff !important;
+        }
+
+
+        html .navbar-sticky .app-content .content-wrapper {
+            padding: 1.8rem 1.1rem 0;
+            margin-top: 3rem;
+        }
+
+        .wrapper {
+            margin: 10px auto 2px;
+            height: 10px;
+            width: auto;
+            background: linear-gradient(to right, red 50%, green 50%);
+            border: 1px solid black;
+            box-sizing: border-box;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .blind {
+            height: 100%;
+            position: absolute;
+            top: 0;
+            background-color: rgb(51, 51, 51);
+            min-width: 50%;
+        }
+
+            .blind.right {
+                left: 50%;
+                border-left: 1px solid white;
+                transform-origin: left top;
+            }
+
+            .blind.left {
+                border-right: 1px solid white;
+                transform-origin: left top;
+            }
+
+        #buttons {
+            text-align: center;
+        }
+
+        /* Ruler crap */
+
+        .ruler-container {
+            text-align: center;
+        }
+
+        .ruler, .ruler li {
+            margin: 0;
+            padding: 0;
+            list-style: none;
+            display: inline-block;
+        }
+            /* IE6-7 Fix */
+            .ruler, .ruler li {
+                *display: inline;
+            }
+
+        .ruler {
+            display: inline-block;
+            margin: 0 auto;
+            background: lightYellow;
+            box-shadow: 0 -1px 1em hsl(60, 60%, 84%) inset;
+            border-radius: 2px;
+            border: 1px solid #ccc;
+            color: #ccc;
+            height: .05em;
+            /*padding-right: 1cm;*/
+            white-space: nowrap;
+            margin-left: 1px;
+        }
+
+            .ruler li {
+                /*padding-left: 1cm;*/
+                width: 2em;
+                margin: .64em -1em -.64em;
+                text-align: center;
+                position: relative;
+                text-shadow: 1px 1px hsl(60, 60%, 84%);
+            }
+
+        .ruler1 li {
+            /*padding-left: 1cm;*/
+            width: 2em;
+            /*margin: .64em -1em -.64em;*/
+            margin: 0.2em 0em 0em;
+            text-align: center;
+            position: relative;
+            text-shadow: 1px 1px hsl(60, 60%, 84%);
+        }
+
+        .ruler li:before {
+            content: '';
+            position: absolute;
+            border-left: 1px solid #ccc;
+            height: .64em;
+            top: -.64em;
+            right: 1em;
+        }
+
+        .ruler1 li:before {
+            content: '';
+            position: absolute;
+            border-left: 0px solid #ccc;
+            height: .64em;
+            top: -.64em;
+            right: 1em;
+        }
+
+        .highcharts-background {
+            fill: #ffffff;
+            border-radius: 0px;
+            height: 0px;
+        }
+
+        .progress-bar-success .progress-bar {
+            background-color: green;
+            box-shadow: 0 0px 0px 0 rgb(57 218 138 / 60%);
+        }
+
+        body.dark-layout .progress {
+            background-color: rgb(51, 51, 51);
+        }
+
+        .progress.progress-sm {
+            height: 0.65rem;
+            border: 1px solid black;
+        }
+
+        .progress .progress-bar {
+            border-radius: 0rem;
+        }
+
+        .progress {
+            display: flex;
+            line-height: 0;
+            font-size: 0.75rem;
+            border-radius: 0rem;
+        }
+        #navbar-mobile.navbar-collapse .navbar-nav .menu-toggle {
+            position: relative;
+            top: 4.5px;
+            padding: 0.0rem 0.0rem 0.5rem 1px;
+        }
+        .pt-25 {
+        padding-top:25px;
+        }
+    </style>
+</head>
+<!-- END: Head-->
+<!-- BEGIN: Body-->
+
+<body class="vertical-layout vertical-menu-modern dark-layout 2-columns  navbar-sticky footer-static  " data-open="click" data-menu="vertical-menu-modern" data-col="2-columns" data-layout="dark-layout">
+
+    <!-- BEGIN: Header-->
+    <div class="header-navbar-shadow"></div>
+    <nav class="header-navbar main-header-navbar navbar-expand-lg navbar navbar-with-menu fixed-top navbar-dark">
+        <div class="navbar-wrapper">
+            <div class="navbar-container content">
+                <div class="navbar-collapse row" id="navbar-mobile">
+                    <!--<div class="mr-auto float-left bookmark-wrapper d-flex align-items-center">-->
+                        <ul class="nav navbar-nav">
+                            <li class="nav-item mobile-menu d-xl-none mr-auto"><a class="nav-link nav-menu-main menu-toggle hidden-xs" href="javascript:void(0);"><i class="ficon bx bx-menu"></i></a></li>
+                        </ul>
+                        <div class="row col-sm-12 mt-0" style="padding-right:0px;">
+                            <div class="col-sm-6 mb-0" style="padding-right:0px;">
+                                <select class="form-control col-sm-12 col-md-6 col-lg-4" style="border-color:#5A8DEE !important;">
+                                    <option>Select Account</option>
+                                    <option value="1">1102154789</option>
+                                    <option value="2">2102254789</option>
+                                    <option value="3">3102354789</option>
+                                    <option value="4">4102454789</option>
+                                    <option value="5">5102554789</option>
+                                </select>
+                            </div>
+                            <div class="col-sm-6 mb-0" style="padding-right: 0px; padding-left: 0px;">
+                                <div class="form-group">
+                                    <div class="float-right  col-sm-12 col-md-6 col-lg-4" style="padding-right:0px;">
+                                        <a href="https://newlyfundedtraders.com/" class="btn btn-warning btn-sm float-right form-control" target="_blank">Reset Account</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!--<div class="mr-auto float-left bookmark-wrapper d-flex align-items-center">
+        </div>
+        <div class="ml-auto float-right bookmark-wrapper d-flex align-items-end">
+            <a href="#" class="btn btn-warning btn-sm">Reset Account</a>
+        </div>-->
+                    </div>
+                </div>
+        </div>
+    </nav>
+    <!-- END: Header-->
+    <!-- BEGIN: Main Menu-->
+    <div class="main-menu menu-fixed menu-dark menu-accordion menu-shadow" data-scroll-to-active="true">
+        <div class="navbar-header">
+            <ul class="nav navbar-nav flex-row">
+                <li class="nav-item mr-auto">
+                    <a class="navbar-brand" href="html/ltr/vertical-menu-template-dark/index.html">
+                        <div class="brand-logo">
+                            <img src="asset/images/NFTLogo.png" height="40px" width="175px" />
+
+                        </div>
+                    </a>
+                </li>
+                <li class="nav-item nav-toggle"><a class="nav-link modern-nav-toggle pr-0" data-toggle="collapse"><i class="bx bx-x d-block d-xl-none font-medium-4 primary"></i><i class="toggle-icon bx bx-disc font-medium-4 d-none d-xl-block primary" data-ticon="bx-disc"></i></a></li>
+            </ul>
+        </div>
+        <div class="shadow-bottom"></div>
+        <div class="main-menu-content">
+            <ul class="navigation navigation-main" id="main-menu-navigation" data-menu="menu-navigation" data-icon-style="lines">
+                <li class="nav-item mt-4">
+                    <div style="text-align:center">John Doe</div>
+                </li>
+                <li class=" nav-item mt-2">
+                    <a href="dashboard-analytics2.html"><i class="ficon bx bxs-dashboard"></i><span class="menu-title text-truncate" data-i18n="Dashboard">Dashboard</span></a>
+                </li>
+                <li class=" nav-item">
+                    <a href="transactionhistory.html"><i class="ficon bx bx-bar-chart-alt-2"></i><span class="menu-title text-truncate" data-i18n="Chat">Account History</span></a>
+                </li>
+                <li class=" nav-item">
+                    <a href="#"><i class="ficon bx bx-user"></i><span class="menu-title text-truncate" data-i18n="Profile">My Profile</span></a>
+                </li>
+				
+				<li class=" nav-item">
+                    <a href="https://newlyfundedtraders.com/dashboard/" target="_blank"><i class="ficon bx bx-chart"></i><span class="menu-title text-truncate" data-i18n="NFT Dashboard">NFT Dashboard</span></a>
+                </li>
+				
+                <li class=" nav-item">
+                    <a href="login.html"><i class="ficon bx bx-power-off"></i><span class="menu-title text-truncate" data-i18n="Signout">Logout</span></a>
+                </li>
+
+            </ul>
+        </div>
+    </div>
+    <!-- END: Main Menu-->
+    <!-- BEGIN: Content-->
+    <div class="app-content content">
+        <div class="content-overlay"></div>
+        <div class="content-wrapper" style="padding: 1.8rem 1.1rem 0;">
+            <div class="content-header row">
+            </div>
+            <div class="content-body" style="margin-left: .7rem !important;">
+                <!-- Dashboard Analytics Start -->
+                <section id="dashboard-analytics">
+
+                    <div class="row" style="padding-top: 2.0rem !important;">
+                        <div class="col-xl-6 col-md-6 col-12 growth-card">
+                            <div class="card">
+                                <div class="card-body text-center" style="padding: 0rem;">
+                                    <div class="border-bottom align-items-center flex-wrap text-warning  font-medium-3" style="padding:.5rem;">
+                                        Goal Meter
+                                    </div>
+                                    <div id="container" style=" margin: 0 auto; height: 250px; border:none"></div>
+
+                                    <div class="align-items-center flex-wrap text-warning mt-0 border-top" style="padding:.5rem;">
+                                        Amount To
+                                    </div>
+                                    <div class="row  pb-1  pt-1">
+                                        <div class="col-sm-6">
+                                            <div class="float-left ml-1" style="color:#fff;">
+                                                Weekly Loss Limit:
+                                            </div>
+                                            <div class="float-right" style="color:#fff;">
+                                                $1,500
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-6">
+                                            <div class="float-left ml-1" style="color:#fff;">
+                                                Goal:
+                                            </div>
+                                            <div class="float-right  mr-1" style="color:#fff;">
+                                                $7,500
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-6">
+                                            <div class="float-left ml-1" style="color:#fff;">
+                                                Maximum Loss Limit:
+                                            </div>
+                                            <div class="float-right" style="color:#fff;">
+                                                $2,500
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xl-6 col-md-6 col-12 growth-card">
+                            <div class="card" style="height:96%;">
+                                <div class="card-body text-center" style="padding: 0rem;">
+                                    <div class="border-bottom align-items-center flex-wrap text-warning font-medium-3" style="padding:.5rem;">
+                                        Program Rules
+                                    </div>
+                                    <div id="" style="">
+                                        <ul class="row mt-1 col-sm-12">
+                                            <li class="font-medium-3 text-left col-12 ml-3">No weekly losses greater than $2,500</li>
+                                            <li class="font-medium-3 text-left col-12 ml-3">No overall maximum draw down of $5,000</li>
+                                            <li class="font-medium-3 text-left col-12 ml-3">Achieve a profit target of $10,000</li>
+                                            <li class="font-medium-3 text-left col-12 ml-3">Must have a stop loss on every trade</li>
+                                            <li class="font-medium-3 text-left col-12 ml-3">Must be flat by 19:00 gmt of Friday</li>
+                                            <li class="font-medium-3 text-left col-12 ml-3">Current risk cannot exceed available risk</li>
+                                        </ul>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-xl-4 col-md-6 col-sm-12 dashboard-referral-impression">
+                            <div class="row">
+                                <!-- Referral Chart Starts-->
+                                <div class="col-xl-12 col-12">
+                                    <div class="card">
+                                        <div class="card-body text-center pb-0">
+                                            <h3>$50,000</h3>
+                                            <div id="primary-line-chart1"></div>
+                                            <span class="text-warning">Current Balance</span>
+                                        </div>
+
+                                        <div class="card-body text-center pb-1">
+                                            <div class="fonticon-wrap float-right align-items-end readable-mark-icon" data-toggle="tooltip" data-placement="top" title="Current Balance is the current balance in your account. It does not include any open trade PnL. ">
+                                                <i class="bx bx-info-circle"></i>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xl-4 col-md-6 col-sm-12 dashboard-referral-impression">
+                            <div class="row">
+                                <!-- Referral Chart Starts-->
+                                <div class="col-xl-12 col-12">
+                                    <div class="card">
+                                        <div class="card-body text-center pb-0">
+                                            <h3><span class="text-danger">$1,500</span>/<span class="text-success">$2500</span></h3>
+                                            <div id="profit-info-chart1" class="d-flex justify-content-center"></div>
+                                            <span class="text-warning">Current Risk/Available Risk</span>
+                                        </div>
+
+                                        <div class="card-body text-center pb-1">
+                                            <div class="fonticon-wrap float-right align-items-end readable-mark-icon" data-toggle="tooltip" data-placement="top" title="Current Risk is the sum of all trades entry price minus stop loss price.  Available Risk is the difference between your account balance and the nearest limit (Weekly Loss Limit or Max Drawdown Limit). ">
+                                                <i class="bx bx-info-circle"></i>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xl-4 col-md-6 col-sm-12 dashboard-referral-impression">
+                            <div class="row">
+                                <!-- Referral Chart Starts-->
+                                <div class="col-xl-12 col-12">
+                                    <div class="card">
+                                        <div class="card-body text-center pb-0">
+                                            <h3>$50,000</h3>
+                                            <div id="success-line-chart1"></div>
+                                            <span class="text-warning">Current Equity</span>
+                                        </div>
+
+                                        <div class="card-body text-center pb-1">
+                                            <div class="fonticon-wrap float-right align-items-end readable-mark-icon" data-toggle="tooltip" data-placement="top" title="Current Equity is your Current Balance + PnL on all open trades. ">
+                                                <i class="bx bx-info-circle"></i>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div class="row pt-1">
+
+                        <div class="col-xl-4 col-md-6 col-sm-12 dashboard-referral-impression">
+                            <div class="row" style="height:100%">
+                                <!-- Referral Chart Starts-->
+                                <div class="col-xl-12 col-12">
+                                    <div class="card" style="height: 90%">
+                                        <div class="card-body text-center pt-2" style="padding: .5rem;">
+                                            <h3>75%</h3>
+                                            <div class="px-0 pl-1 pr-1  w-100 pt-2" style="min-height: 80px;">
+                                                <div class="progress progress-bar-success progress-sm mb-0">
+                                                    <div class="progress-bar" role="progressbar" aria-valuenow="25" aria-valuemin="80" aria-valuemax="100" style="width:30%;"></div>
+                                                </div>
+                                                <div class="ruler-container">
+                                                    <ul class="ruler ruler1" data-items="3" style="width:100%; margin: 0.2em 0em 0em;"></ul>
+                                                </div>
+                                            </div>
+                                            <div class="text-warning pt-2" style="margin-top:10px;">Win Rate</div>
+                                        </div>
+
+                                        <div class="card-body text-center pb-0">
+                                            <div class="fonticon-wrap float-right align-items-end readable-mark-icon" data-toggle="tooltip" data-placement="top" title="Win Rate is the percentage you are profitable on closed trades.">
+                                                <i class="bx bx-info-circle"></i>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-xl-4 col-md-6 col-sm-12 dashboard-referral-impression">
+                            <div class="row" style="height:100%">
+                                <!-- Referral Chart Starts-->
+                                <div class="col-xl-12 col-12">
+                                    <div class="card" style="height: 90%;">
+                                        <div class="card-body text-center pt-2" style="padding: .5rem;">
+                                            <h3>160</h3>
+                                            <!--<div id="sales-chart1" class=""></div>-->
+                                            <div class="px-0 w-100 pt-1 pb-1" style="min-height: 97px;">
+                                                <div id="registration-chart1"></div>
+                                            </div>
+                                            <div class="text-warning pb-1">Number of Trades this week</div>
+                                        </div>
+
+                                        <div class="card-body text-center pb-1">
+                                            <div class="fonticon-wrap float-right align-items-end readable-mark-icon" data-toggle="tooltip" data-placement="top" title="The figure at the top is your total sum of unique trades this week.  The bars represent the total unique trades for each specific trading day. ">
+                                                <i class="bx bx-info-circle"></i>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xl-4 col-md-6 col-sm-12 dashboard-referral-impression">
+                            <div class="row" style="height:100%">
+                                <!-- Referral Chart Starts-->
+                                <div class="col-xl-12 col-12">
+                                    <div class="card" style="height: 90%">
+                                        <div class="card-body text-center pt-2" style="padding: .5rem;">
+                                            <h3>30%</h3>
+                                            <div class="px-0 pl-1 pr-1 w-100 pt-1" style="min-height: 80px;">
+
+                                                <div class="wrapper">
+                                                    <div class='blind blind2 right'></div>
+                                                    <div class='blind blind2 left'></div>
+                                                </div>
+
+                                                <div class="ruler-container">
+                                                    <ul id="ruler2" class="ruler ruler2" data-items="3" style="width:100%;"></ul>
+                                                </div>
+
+                                            </div>
+                                            <div class="text-warning pt-2" style="margin-top: 4px;">Win Spread</div>
+
+                                            <div class="card-body text-center pt-3">
+                                                <div class="fonticon-wrap float-right align-items-end readable-mark-icon" data-toggle="tooltip" data-placement="top" title="WinSpread is the difference between the break even rate of your strategy and your actual win rate">
+                                                    <i class="bx bx-info-circle"></i>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="card-body text-center pt-1" hidden style="padding: .5rem;">
+                                            <h3>-25%</h3>
+                                            <div class="px-0 w-100">
+                                                <div class="row">
+                                                    <div class="col-2" style="padding-right:0px;">
+                                                        -50%
+                                                    </div>
+                                                    <div class="col-7 mt-1" style="padding-right:0px;">
+                                                        <div class="progress progress-bar-warning progress-sm mb-0">
+                                                            <div class="progress-bar" role="progressbar" aria-valuenow="50" aria-valuemin="80" aria-valuemax="100" style="width:30%;"></div>
+
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-3" style="padding:0px;">
+                                                        +50%
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="text-center" style="color:white;">0%</div>
+                                            <div class="text-warning pt-2">Win Spread</div>
+
+                     
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-xl-4 col-md-6 col-sm-12 dashboard-referral-impression">
+                            <div class="row" style="height:100%">
+                                <!-- Referral Chart Starts-->
+                                <div class="col-xl-12 col-12">
+                                    <div class="card" style="height: 90%;">
+                                        <div class="card-body text-center pt-2" style="padding: .5rem;">
+                                            <h3>$750</h3>
+                                            <div class="px-0 w-100 pt-2">
+                                                <div class="avatar bg-rgba-success  m-0">
+                                                    <div class="avatar-content">
+                                                        <i class="bx bx-dollar text-success"></i>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="text-warning pt-3 ">Average Winning Trade</div>
+                                        </div>
+
+                                        <div class="card-body text-center pb-1">
+                                            <div class="fonticon-wrap float-right align-items-end readable-mark-icon" data-toggle="tooltip" data-placement="top" title="Average Winning Trade is the average $ amount of your profitable trades.">
+                                                <i class="bx bx-info-circle"></i>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xl-4 col-md-6 col-sm-12 dashboard-referral-impression">
+                            <div class="row" style="height:100%">
+                                <!-- Referral Chart Starts-->
+                                <div class="col-xl-12 col-12">
+                                    <div class="card" style="height: 90%;">
+                                        <div class="card-body text-center pt-2" style="padding: .5rem;">
+                                            <h3>230</h3>
+                                            <div class="px-0 w-100 pt-2">
+                                                <div class="avatar bg-rgba-primary m-0">
+                                                    <div class="avatar-content">
+                                                        <i class="bx bx-stats text-primary"></i>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="text-warning pt-3 pb-1">Total Volume</div>
+                                        </div>
+
+                                        <div class="card-body text-center pb-1">
+                                            <div class="fonticon-wrap float-right align-items-end readable-mark-icon" data-toggle="tooltip" data-placement="top" title="Total Volume displays your total volume in lots for your account.  1 lot = $100,000 notional.">
+                                                <i class="bx bx-info-circle"></i>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xl-4 col-md-6 col-sm-12 dashboard-referral-impression">
+                            <div class="row" style="height:100%">
+                                <!-- Referral Chart Starts-->
+                                <div class="col-xl-12 col-12">
+                                    <div class="card" style="height: 90%;">
+                                        <div class="card-body text-center pt-2" style="padding: .5rem;">
+                                            <h3>-$115%</h3>
+                                            <div class="px-0 w-100 pt-2">
+                                                <div class="avatar bg-rgba-danger  m-0">
+                                                    <div class="avatar-content">
+                                                        <i class="bx bx-dollar text-danger font-medium-2"></i>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="text-warning  pt-3 pb-1">Average Losing Trade</div>
+                                        </div>
+
+                                        <div class="card-body text-center pb-1">
+                                            <div class="fonticon-wrap float-right align-items-end readable-mark-icon" data-toggle="tooltip" data-placement="top" title="Average Losing Trade is the average $ amount of your losing trades.">
+                                                <i class="bx bx-info-circle"></i>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                <!-- Dashboard Analytics end -->
+
+            </div>
+        </div>
+    </div>
+    <!-- END: Content-->
+    <!-- BEGIN: Footer-->
+    <footer class="footer footer-static footer-dark" hidden>
+        <p class="clearfix mb-0">
+            <span class="float-left d-inline-block">2021 &copy; PIXINVENT</span><span class="float-right d-sm-inline-block d-none">Crafted with<i class="bx bxs-heart pink mx-50 font-small-3"></i>by<a class="text-uppercase" href="https://1.envato.market/pixinvent_portfolio" target="_blank">Pixinvent</a></span>
+            <button class="btn btn-primary btn-icon scroll-top" type="button"><i class="bx bx-up-arrow-alt"></i></button>
+        </p>
+    </footer>
+    <!-- END: Footer-->
+    <!-- BEGIN: Vendor JS-->
+    <script src="asset/js/vendors.min.js"></script>
+    <script src="asset/js/LivIconsEvo.tools.js"></script>
+    <script src="asset/js/LivIconsEvo.defaults.js"></script>
+    <script src="asset/js/LivIconsEvo.min.js"></script>
+    <!-- BEGIN Vendor JS-->
+    <!-- BEGIN: Page Vendor JS-->
+    <script src="asset/js/apexcharts.min.js"></script>
+    <!-- END: Page Vendor JS-->
+    <!-- BEGIN: Theme JS-->
+    <script src="asset/js/vertical-menu-dark.js"></script>
+    <script src="asset/js/app-menu.js"></script>
+    <script src="asset/js/app.js"></script>
+    <script src="asset/js/components.js"></script>
+    <script src="asset/js/footer.js"></script>
+    <!-- END: Theme JS-->
+    <!-- BEGIN: Page JS-->
+    <script src="asset/js/dashboard-analytics.js"></script>
+    <!-- END: Page JS-->
+
+
+    <script src="http://code.highcharts.com/highcharts.js"></script>
+    <script src="http://code.highcharts.com/highcharts-more.js"></script>
+    <script src="http://code.highcharts.com/modules/exporting.js"></script>
+
+    <script>
+        var $primary = '#5A8DEE';
+        var $success = '#39DA8A';
+        var $danger = '#FF5B5C';
+        var $warning = '#FDAC41';
+        var $info = '#00CFDD';
+        var $label_color = '#475f7b';
+        var $primary_light = '#E2ECFF';
+        var $danger_light = '#ffeed9';
+        var $gray_light = '#828D99';
+        var $sub_label_color = "#596778";
+        var $radial_bg = "#e7edf3";
+        var serial = 0;
+
+        //Top Roung Chart
+        var rate_data = {
+            "ranges": [
+                { "name": "fast", "start": 2000, "end": 2500 },
+                { "name": "Maintain", "start": 1000, "end": 2000 },
+                { "name": "Slow", "start": -1200, "end": 1000 },
+                { "name": "Adequate", "start": -2000, "end": -1200 },
+                { "name": "Too Fast", "start": -2500, "end": -2000 }
+            ],
+            "value": 1500
+        };
+        $('#container').highcharts({
+
+            chart: {
+                type: 'gauge',
+                plotBackgroundColor: '#272e48',
+                plotBackgroundImage: null,
+                plotBorderWidth: 0,
+                plotShadow: false,
+                height: 250,
+                backgroundcolor: '#000', exporting: false
+
+            },
+            exporting: false,
+            title: {
+                //text: 'Weight Oscillation Rate'
+                text: ''
+            },
+            credits: {
+                enabled: false
+            },
+            pane: {
+                startAngle: -150,
+                endAngle: 150,
+                background: [{
+                    backgroundColor: {
+                        linearGradient: { x1: 0, y1: 0, x2: 0, y2: 1 },
+                        stops: [
+                            [0, '#FFF'],
+                            [1, '#333']
+                        ]
+                    },
+                    borderWidth: 0,
+                    outerRadius: '109%'
+                }, {
+                    backgroundColor: {
+                        linearGradient: { x1: 0, y1: 0, x2: 0, y2: 1 },
+                        stops: [
+                            [0, '#333'],
+                            [1, '#FFF']
+                        ]
+                    },
+                    borderWidth: 1,
+                    outerRadius: '107%'
+                }, {
+                    // default background
+                }, {
+                    backgroundColor: '#DDD',
+                    borderWidth: 0,
+                    outerRadius: '105%',
+                    innerRadius: '103%'
+                }]
+            },
+            xAxis: {
+
+                labels: {
+                    enabled: false
+                }
+            },
+            // the value axis
+            yAxis: {
+                labels: {
+                    enabled: false
+                },
+                min: -2500,
+                max: 2500,
+
+                minorTickInterval: 'auto',
+                minorTickWidth: 1,
+                minorTickLength: 10,
+                minorTickPosition: 'inside',
+                minorTickColor: '#666',
+
+                tickPixelInterval: 30,
+                tickWidth: 2,
+                tickPosition: 'side',
+                tickLength: 10,
+                tickColor: '#666',
+                //labels: {
+                //    step: 2,
+                //    rotation: 'auto'
+                //},
+                //title: {
+                //    text: ''
+                //},
+                title: {
+                    text: null
+                },
+                plotBands: [{
+                    from: rate_data['ranges'][0]['start'],
+                    to: rate_data['ranges'][0]['end'],
+                    color: '#00820b' // green
+                }, {
+                    from: rate_data['ranges'][1]['start'],
+                    to: rate_data['ranges'][1]['end'],
+                    color: '#01DF01' // green
+                }, {
+                    from: rate_data['ranges'][2]['start'],
+                    to: rate_data['ranges'][2]['end'],
+                }, {
+                    from: rate_data['ranges'][3]['start'],
+                    to: rate_data['ranges'][3]['end'],
+
+
+                    color: '#DDDF0D' // yellow
+                }, {
+                    from: rate_data['ranges'][4]['start'],
+                    to: rate_data['ranges'][4]['end'],
+                    color: '#DF5353' // red
+                }]
+            },
+            plotOptions: {
+                series: {
+                    // general options for all series
+                },
+                gauge: {
+                    dataLabels: {
+                        enabled: false,
+                        color: 'red',
+                        style: {
+                            textOutline: 0
+                        }
+                    }
+                }
+            },
+
+            series: [{
+                //name: 'Value',
+                data: [50],
+                tooltip: {
+                    valueSuffix: ' '
+                }
+            }]
+
+        },
+
+            // Add some life
+            function (chart) {
+                if (!chart.renderer.forExport) {
+
+                    var point = chart.series[0].points[0],
+                        newVal,
+                        inc = Math.round((Math.random() - 0.5) * 20);
+
+                    point.update(rate_data['value']);
+
+                }
+            });
+        //End Top Round graph
+
+        //Serial 2
+        // Primary Line Chart
+        // -----------------------------
+        var primaryLineChartOption = {
+            chart: {
+                height: 80,
+                type: 'line',
+                toolbar: {
+                    show: false
+                }
+            },
+            grid: {
+                show: false,
+                padding: {
+                    bottom: 0,
+                }
+            },
+            colors: [$primary],
+            dataLabels: {
+                enabled: false,
+            },
+            stroke: {
+                width: 3,
+                curve: 'smooth'
+            },
+            series: [{
+                data: [50, 0, 50, 40, 90, 0, 40, 25, 80, 40, 45]
+            }],
+            xaxis: {
+                show: false,
+                labels: {
+                    show: false
+                },
+                axisBorder: {
+                    show: false
+                }
+            },
+            yaxis: {
+                show: false
+            },
+        }
+        var primaryLineChart = new ApexCharts(
+            document.querySelector("#primary-line-chart1"),
+            primaryLineChartOption
+        );
+        primaryLineChart.render();
+        //End second graph
+
+        //Serial 3
+        // Profit Info Chart
+        // --------------------------------
+        var profitInfoOptions = {
+            chart: {
+                height: 71,
+                width: 71,
+                type: "radialBar",
+                sparkline: {
+                    show: true
+                }
+            },
+            grid: {
+                show: false,
+                padding: {
+                    left: -13,
+                    right: -13,
+                    top: -5,
+                    bottom: 0
+                }
+            },
+            series: [70],
+            colors: [$info],
+            plotOptions: {
+                radialBar: {
+                    hollow: {
+                        size: "30%"
+                    },
+                    dataLabels: {
+                        showOn: "always",
+                        name: {
+                            show: false
+                        },
+                        value: {
+                            show: false,
+                        }
+                    }
+                }
+            },
+            stroke: {
+                lineCap: "round",
+            }
+        };
+        var profitInfoChart = new ApexCharts(
+            document.querySelector("#profit-info-chart1"),
+            profitInfoOptions
+        );
+        profitInfoChart.render();
+        //End third graph
+
+        //Serial 4
+        // Success Line Chart
+        // -----------------------------
+        var successLineChartOption = {
+            chart: {
+                height: 80,
+                type: 'line',
+                toolbar: {
+                    show: false
+                }
+            },
+            grid: {
+                show: false,
+                padding: {
+                    bottom: 0,
+                }
+            },
+            colors: [$success],
+            dataLabels: {
+                enabled: false,
+            },
+            stroke: {
+                width: 3,
+                curve: 'smooth'
+            },
+            series: [{
+                data: [50, 0, 50, 40, 90, 0, 40, 25, 80, 40, 45]
+            }],
+            xaxis: {
+                show: false,
+                labels: {
+                    show: false
+                },
+                axisBorder: {
+                    show: false
+                }
+            },
+            yaxis: {
+                show: false
+            },
+        }
+        var successLineChart = new ApexCharts(
+            document.querySelector("#success-line-chart1"),
+            successLineChartOption
+        );
+        successLineChart.render();
+        //End number 4 Chart
+
+
+        //Graph 5
+        // Build "dynamic" rulers by adding items
+        $(".ruler1[data-items]").each(function () {
+            var ruler = $(this).empty(),
+                len = Number(ruler.attr("data-items")) || 0,
+                item = $(document.createElement("li")),
+                i;
+
+            ruler.append(item.clone().text("0%"));
+            ruler.append(item.clone().text(""));
+            ruler.append(item.clone().text("100%"));
+        });
+        $(".ruler1").find("li:nth-child(1)").css("float", "left");
+        $(".ruler1").find("li:nth-child(2)").css("visibility", "hidden");
+        $(".ruler1").find("li:nth-child(3)").css("float", "right").css("margin", "2px 10px");
+        // Change the spacing programatically
+        //End Graph 5
+
+
+        //Graph 6
+        // Registration Chart
+        // -------------------
+        var registrationChartoptions = {
+            chart: {
+                type: 'bar',
+                height: 83,
+                //width: 140,
+                sparkline: {
+                    enabled: true
+                },
+                toolbar: {
+                    show: false
+                },
+            },
+            states: {
+                hover: {
+                    filter: 'none'
+                }
+            },
+            colors: [$danger_light, $danger_light, $danger_light, $danger_light, $danger_light],
+            series: [{
+                //name: ['sat'],
+                categories: ['M', 'T', 'W', 'T', 'F'],
+                data: [5, 15, 9, 8, 12]
+            }],
+            grid: {
+                show: false,
+                padding: {
+                    left: 0,
+                    right: 0
+                }
+            },
+
+            plotOptions: {
+                bar: {
+                    columnWidth: '80%',
+                    distributed: true,
+                }
+            },
+            tooltip: {
+                x: {
+                    show: false
+                }
+            },
+            //xaxis: {
+            //    type: 'numeric',
+            //}
+            xaxis: {
+                categories: ['M', 'T', 'W', 'T', 'F'],
+                axisBorder: {
+                    show: false
+                },
+                axisTicks: {
+                    show: false
+                },
+                labels: {
+                    style: {
+                        colors: $gray_light
+                    },
+                    offsetY: -5
+                }
+            },
+        }
+        var registrationChart = new ApexCharts(
+            document.querySelector("#registration-chart1"),
+            registrationChartoptions
+        );
+        registrationChart.render();
+        //End Graph 6
+
+        //Graph 7
+        let currentPercentageState = 0;
+        let easing = "cubic-bezier(0.5, 1, 0.89, 1)";
+        let duration = 1000;
+        let easeReversal = y => (1 - Math.sqrt((y - 1) / -1))
+
+        function animate2(percentage, serial) {
+            percentage = parseFloat(percentage);
+
+            // determine if we've crossed the 0 threshold, which would force us to do something else here
+            let threshold = currentPercentageState / percentage < 0;
+            console.log("Crosses 0: " + threshold);
+
+            if (!threshold && percentage != 0) {
+                // determine which blind we're animating
+                let blind = percentage < 0 ? "left" : "right";
+
+                $(`.blind${serial}.${blind}`)[0].animate(
+                    [
+                        {
+                            transform: `translateX(${currentPercentageState}%)`,
+                            easing: easing
+                        },
+                        {
+                            transform: `translateX(${percentage}%)`
+                        }
+                    ],
+                    {
+                        fill: "forwards",
+                        duration: duration
+                    }
+                );
+            } else {
+                // this happens when we cross the 0 boundry
+                // we'll have to create two animations - one for moving the currently offset blind back to 0, and then another to move the second blind
+                let firstBlind = percentage < 0 ? "right" : "left";
+                let secondBlind = percentage < 0 ? "left" : "right";
+
+                // get total travel distance
+                let delta = currentPercentageState - percentage;
+
+                // find the percentage of that travel that the first blind is responsible for
+                let firstTravel = currentPercentageState / delta;
+                let secondTravel = 1 - firstTravel;
+
+                console.log("delta; total values to travel: ", delta);
+                console.log(
+                    "firstTravel; percentage of the total travel that should be done by the first blind: ",
+                    firstTravel
+                );
+                console.log(
+                    "secondTravel; percentage of the total travel that should be done by the second blind: ",
+                    secondTravel
+                );
+
+                // animate the first blind.
+                $(`.blind${serial}.${firstBlind}`)[0].animate(
+                    [
+                        {
+                            transform: `translateX(${currentPercentageState}%)`,
+                            easing: easing
+                        },
+                        {
+                            // we go towards the target value instead of 0 since we'll cut the animation short
+                            transform: `translateX(${percentage}%)`
+                        }
+                    ],
+                    {
+                        fill: "forwards",
+                        duration: duration,
+                        // cut the animation short, this should run the animation to this x value of the easing function
+                        iterations: easeReversal(firstTravel)
+                    }
+                );
+
+                // animate the second blind
+                $(`.blind${serial}.${secondBlind}`)[0].animate(
+                    [
+                        {
+                            transform: `translateX(${currentPercentageState}%)`,
+                            easing: easing
+                        },
+                        {
+                            transform: `translateX(${percentage}%)`
+                        }
+                    ],
+                    {
+                        fill: "forwards",
+                        duration: duration,
+                        // start the iteration where the first should have left off. This should put up where the easing function left off
+                        iterationStart: easeReversal(firstTravel),
+                        // we only need to carry this aniamtion the rest of the way
+                        iterations: 1 - easeReversal(firstTravel),
+                        // delay this animation until the first "meets" it
+                        delay: duration * easeReversal(firstTravel)
+                    }
+                );
+            }
+            // save the new value so that the next iteration has a proper from keyframe
+            currentPercentageState = percentage;
+        }
+        // the following are just binding set ups for the buttons
+        animate2(30, 2);
+
+        $(".ruler2[data-items]").each(function () {
+            var ruler = $(this).empty(),
+                len = Number(ruler.attr("data-items")) || 0,
+                item = $(document.createElement("li")),
+                i;
+
+            ruler.append(item.clone().text("-50%"));
+            ruler.append(item.clone().text("0%"));
+            ruler.append(item.clone().text("50%"));
+        });
+        $(".ruler2").find("li:nth-child(1)").css("float", "left");
+        $(".ruler2").find("li:nth-child(3)").css("float", "right");
+                // Change the spacing programatically
+                //End Graph 7
+
+    </script>
+
+</body>
+<!-- END: Body-->
+
+</html>
